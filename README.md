@@ -81,6 +81,14 @@ This new path is also then added to the list of prerendered pages. Subsequent re
 - Routing is when we give the user the illusion of having multiple pages. When we navigate around and load multiple pages then that is the job of a Router. The Router keeps an eye on the URL and when it changes is prevents a request that is by default sent to the backend server and instead renders different content on the page with React ( a different component in essence ). In summary, routing is we change what is visible on the screen based on a URL without sending an extra request to the server
 - NextJS defines pages and routes with files and folders instead of with code.
 
+#### NextJS provides dynamic [slug], catch all routes [...slug] as well as optional catch all routes [[...slug]]
+Dynamic routes for example pages/post/[slug].js will match pages/post/post1 and the query object will look like {'slug': post1}. If any other query are added like /post/abc?pid=123 then the query parameters will be merged into one object like so: {'slug': 'abc', 'pid': 123}.
+
+Catch all routes on the other hand for example pages/post/[...slug].js will match pages/post/post1 as well as will match pages/post/post1/post2 as well as will match pages/post/post1/random. The last example will have the following query object {'slug': ['post1', 'post2']}
+
+Catch all routes can be made optional by including the parameter in double brackets ([[...slug]]).
+For example, pages/post/[[...slug]].js will match /post, /post/a, /post/a/b, and so on.
+
 ### Enables a fullstack React project
 
 - NextJS enables you to add a backend api to the project using nodejs code.
